@@ -1,145 +1,274 @@
-# 🍽️ Filipino Cookbook API
+# Filipino Cookbook API
 
-A RESTful API developed using **PHP**, **Slim Framework**, and **MySQL** that manages a collection of Filipino food recipes. The API allows users to retrieve information about dishes, categories, origins, and ingredients through HTTP requests.
+A RESTful API developed using *PHP*, *Slim Framework*, *MySQL*, and *Bearer Token Authentication* for managing and retrieving information about Filipino dishes.
 
-This project was developed as part of an academic requirement to demonstrate the fundamentals of REST API development, routing, database connectivity, and CRUD operations.
+This API provides endpoints for retrieving Filipino foods, viewing categories and ingredients, searching for specific dishes, and adding new food records. All API responses are returned in *JSON* format and protected using Bearer Token authentication.
 
 ---
 
-##Features
+# Project Description
 
-- Retrieve all Filipino dishes
-- Retrieve a specific dish by ID
-- Retrieve dishes by category
-- Retrieve dishes by place of origin
-- Retrieve ingredients for each dish
-- RESTful API endpoints
-- JSON-formatted responses
+The Filipino Cookbook API was developed as part of the API Development Laboratory Activity. It displays the integration of a secure RESTful API using PHP and the Slim Framework.
+
+The API serves as a source of Filipino food information.
+
+The project demonstrates:
+
+- REST API development
+- HTTP request handling
+- JSON responses
+- Database integration
+- Bearer Token Authentication
+- CRUD operations
+- API documentation
+- Git and GitHub version control
+
+---
+
+# Features
+
+- Retrieve all Filipino foods
+- Retrieve a food by its ID
+- Search for a specific food
+- Retrieve all food categories
+- Retrieve all food ingredients
+- Add a new Filipino food
+- Welcome endpoint
+- Bearer Token Authentication
+- JSON formatted responses
 - MySQL database integration
-- Slim Framework routing
 
 ---
 
-##Tech Used
+# Technologies Used
 
-- PHP
-- Slim Framework 4
-- Composer
-- MySQL
-- XAMPP
-- Apache
-- REST API
-- JSON
+| Technology     |           Purpose             |
+|    PHP         | Backend Programming Language  |
+| Slim Framework |        REST API Framework     |
+| MySQL          |             Database          |
+| Composer       |    Dependency Management      |
+| Apache         |          Web Server           |
+| XAMPP          | Local Development Environment |
+| JSON           |       Data Exchange Format    |
+| Thunder Client |        API Testing            |
+| Git            |         Version Control       |
+| GitHub         |       Repository Hosting      |
 
 ---
 
-##Project Structure
+# Project Structure
 
 ```
 Filipino-Cookbook-API/
 │
+├── database/
+│   └── filipino_foods_relational.sql
+│
+├── screenshots/
+│
 ├── public/
-│   ├── index.php
-│   └── .htaccess
 │
 ├── vendor/
 │
 ├── composer.json
 ├── composer.lock
-└── README.md
+├── README.md
+└── .gitignore
 ```
-
 ---
 
-##Installation
+# Installation Guide
 
-###1. Clone the repository
+## 1. Clone the repository
 
 ```bash
 git clone https://github.com/DizonDawn/Filipino-Cookbook-API.git
 ```
 
-###2. Open the project folder
+---
+
+## 2. Open the project folder
 
 ```bash
 cd Filipino-Cookbook-API
 ```
 
-###3. Install dependencies
+---
+
+## 3. Install dependencies
 
 ```bash
 composer install
 ```
 
-###4. Import the MySQL database
+---
 
-Import your SQL file into phpMyAdmin.
+## 4. Import the database
 
-###5. Start Apache and MySQL
+Open **phpMyAdmin**.
 
-Open XAMPP and start:
+Create a new database named
+filipino_cookbook_api
 
-- Apache
-- MySQL
+Import
+database/filipino_foods_relational.sql
 
-###6. Run the API
+---
+
+## 5. Configure the database connection
+
+Update your database configuration file with your local database credentials.
 
 Example:
 
-```
-http://localhost/Filipino-Cookbook-API/public/
-```
-
----
-
-##Sample API Endpoints
-
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| GET | /foods | Retrieve all dishes |
-| GET | /foods/{id} | Retrieve a dish by ID |
-| GET | /categories | Retrieve all categories |
-| GET | /origins | Retrieve all origins |
-| GET | /ingredients | Retrieve all ingredients |
-
----
-
-##Sample JSON Response
-
-```json
-{
-    "id": 1,
-    "name": "Adobo",
-    "category": "Main Dish",
-    "origin": "Luzon"
-}
+```php
+$dbHost = "localhost";
+$dbName = "filipino_cookbook_api";
 ```
 
----
+## 6. Start XAMPP
 
-##Learning Objectives
+Start:
+- Apache
+- MySQL
 
-This project demonstrates:
+## 7. Run the API
 
-- REST API development
-- HTTP request handling
-- CRUD operations
-- Database integration
-- JSON serialization
-- Slim Framework routing
-- Composer dependency management
+http://localhost/filipino-cookbook-api/public/
 
 ---
 
-##Author
+# Database Information
 
-**Dizon Dawn Aleeah V, 4C**
+**Database Name**
 
-Bachelor of Science in Information Technology  
-Major in Business Analytics
+filipino_cookbook_api
+
+**SQL File**
+
+database/filipino_foods_relational.sql
+
+## Database Tables
+
+- foods
+- categories
+- ingredients
+- food_ingredients
+
+The database stores information about Filipino dishes together with their categories and ingredients.
 
 ---
 
-##License
+# Authentication
 
-This project is intended for educational purposes.
+This API uses **Bearer Token Authentication**.
+
+Every protected request must include the following header:
+Authorization: Bearer dmmmsu-cookbook-token-2026
+Requests without a valid Bearer Token will be rejected.
+
+# Base URL : http://localhost/filipino-cookbook-api/public/
+
+---
+
+# API Endpoints
+
+## 1. Welcome Endpoint
+
+GET Method
+Description: Returns the welcome message of the API.
+GET http://localhost/filipino-cookbook-api/public/
+
+## 2. Retrieve All Foods
+
+GET Method, Endpoint: /api/foods
+Description: Returns all Filipino food records.
+
+## 3. Retrieve Food by ID
+
+GET Method, Endpoint: /api/foods/{id}
+Description: Returns a specific food using its ID.
+
+## 4. Search for a Specific Food
+
+GET Method, Endpoint: /api/foods/search
+Description: Returns a specific Filipino food based on the provided search parameter.
+
+## 5. Retrieve Categories
+
+GET Method, Endpoint: /api/categories
+Description: Returns all food categories.
+
+## 6. Retrieve Ingredients
+
+GET Method, Endpoint: /api/ingredients
+Description: Returns all ingredients.
+
+## 7. Add New Food
+
+POST Method, Endpoint: /api/foods
+Description: Creates a new Filipino food record.
+
+
+# Endpoint Testing
+
+Included screenshots:
+
+- Welcome Endpoint
+- GET All Foods
+- GET Food by ID
+- GET Specific Food
+- GET Categories
+- GET Ingredients
+- POST New Food
+- Successful Bearer Token Authentication
+- Invalid or Missing Token Response
+
+---
+
+# HTTP Status Codes
+
+| Code| Description |
+| 200 | Request completed successfully |
+| 201 | Resource created successfully |
+| 400 | Invalid request |
+| 401 | Unauthorized |
+| 403 | Forbidden |
+| 404 | Resource not found |
+| 500 | Internal Server Error |
+
+---
+
+# Testing
+
+The API was tested using **Thunder Client**.
+
+Testing verified:
+
+- Successful authentication
+- Successful endpoint requests
+- JSON responses
+- Database connectivity
+- Resource retrieval
+- Resource creation
+
+---
+
+# Developer Information
+
+*Developer* Dizon Dawn
+
+*Program* Bachelor of Science in Information Technology
+
+*Major* Business Analytics
+
+//GitHub Username : DizonDawn
+
+//Repository : https://github.com/DizonDawn/Filipino-Cookbook-API
+
+//Date Completed : August 2026
+
+---
+
+# License
+This project was developed for educational purposes as part of the API Development Laboratory Activity.
